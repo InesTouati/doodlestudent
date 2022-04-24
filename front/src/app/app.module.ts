@@ -40,6 +40,7 @@ import { Selecteddate4userPipePipe } from './selecteddate4user-pipe.pipe';
 import { ModalPollClosComponent } from './modal-poll-clos/modal-poll-clos.component';
 import { TopBarComponent } from './top-bar/top-bar.component';
 import { ShowCommentsComponent } from './show-comments/show-comments.component';
+import { WeatherServiceService } from './weather-service.service';
 registerLocaleData(localeFr, 'fr');
 FullCalendarModule.registerPlugins([ // register FullCalendar plugins
   dayGridPlugin,
@@ -82,7 +83,7 @@ FullCalendarModule.registerPlugins([ // register FullCalendar plugins
     CheckboxModule,
     NgbModule
   ],
-  providers: [],
+  providers: [WeatherServiceService],
   bootstrap: [AppComponent],
 
 

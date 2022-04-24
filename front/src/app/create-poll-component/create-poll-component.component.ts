@@ -5,6 +5,8 @@ import { FullCalendarComponent, CalendarOptions, EventInput } from '@fullcalenda
 import frLocale from '@fullcalendar/core/locales/fr';
 import { PollChoice, Poll, User } from '../model/model';
 import { ActivatedRoute } from '@angular/router';
+import { WeatherServiceService } from '../weather-service.service';
+import { WeatherData } from '../weather';
 
 @Component({
   selector: 'app-create-poll-component',
@@ -13,6 +15,8 @@ import { ActivatedRoute } from '@angular/router';
   providers: [MessageService, PollService, FullCalendarComponent]
 })
 export class CreatePollComponentComponent implements OnInit {
+
+  
   urlsondage = '';
   urlsondageadmin = '';
   urlsalon = '';
@@ -67,8 +71,10 @@ export class CreatePollComponentComponent implements OnInit {
   }
   submitted = false;
 
+  weather! : WeatherData;
 
-  constructor(public messageService: MessageService, public pollService: PollService, private actRoute: ActivatedRoute) { }
+
+  constructor(public messageService: MessageService, public pollService: PollService, private actRoute: ActivatedRoute, private weather_service : WeatherServiceService) { }
 
   ngOnInit(): void {
     this.poll.pollChoices = [];
@@ -186,7 +192,10 @@ export class CreatePollComponentComponent implements OnInit {
 
     });
 
-
+    this.weather_service.get_current_weather("Rennes").subscribe((data)=>{
+      this.weather = data
+      console.log(data)
+    })
 
   }
 

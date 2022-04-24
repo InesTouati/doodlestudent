@@ -75,10 +75,14 @@
           </span>
         </div>
       </div>
-
             <full-calendar #calendar [options]="options"></full-calendar>
       </ng-template>
             <ng-template pTemplate="footer">
+                <h3>Météo actuelle</h3>
+                <div style="display: flex;">
+                    <p><b>{{weather.location.name}}</b> : {{weather.current.temperature}}° - {{weather.current.weather_descriptions}}</p>
+                    <img src="{{weather.current.weather_icons}}" style="width: 1.4em; height: 1.4em; margin-left: 1em;">
+                  </div>
               <div>
                   <p-button label="Back" (onClick)="prevPage1()" icon="pi pi-angle-left"></p-button>
                   <p-button class="float-right" label="Next" (onClick)="nextPage1()" icon="pi pi-angle-right" iconPos="right"></p-button>
